@@ -7,41 +7,41 @@ function setup() {
     fill(255);
     text("輸入多邊形的邊數.", 280, 345); 
 
-    inputInt = createInput();
-    inputInt.position(290, 360);
-    inputInt.size(70);
+    edgeInput = createInput();
+    edgeInput.position(290, 360);
+    edgeInput.size(70);
 
-    buttonSubmit = createButton("輸入");
-    buttonSubmit.position(360, 360);
-    buttonSubmit.mousePressed(drawPolygon);
+    edgebutton = createButton("輸入");
+    edgebutton.position(360, 360);
+    edgebutton.mousePressed(setEdges);
    
 
-    fill(255);
+    fill(200);
     text("輸入多邊形的顏色.", 280, 300);
 
-    inputInt = createInput();
-    inputInt.position(290, 360);
-    inputInt.size(70);
+    colorInput = createInput();
+    colorInput.position(290, 320);
+    colorInput.size(70);
 
-    buttonSubmit = createButton("輸入");
-    buttonSubmit.position(360, 310);
-    buttonSubmit.mousePressed(drawPolygon);
+    colorbutton = createButton("輸入");
+    colorbutton.position(360, 310);
+    colorbutton.mousePressed(setcolor);
 
     stroke('yellow')
     noFill();    
 }
-function drawPolygon() {
+function setEdges() {
     // put drawing code here
     background(0);
 
     x = width*0.5;
     y = height*0.5;
     var numEdges = int(inputInt.value());
-    var polygoncolor = int(Color.value());
+    var setcolor = int(Color.value());
     r = 150;
     d = 180;
 
-    stroke(polygoncolor);
+    stroke(setcolor);
 
     beginShape();
     for (i=0; i<=numEdges; i++) {
