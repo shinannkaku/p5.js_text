@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <title>p5.js 簡要講義與範例</title>
+    </head>
+    
+    <body>
+        <section>
+            <h1>p5.js 簡要講義與範例</h1>
+            <p>這個講義提供給網路內容設計課程的同學。其目的在於簡單地說明p5.js套件的使用。希望可以應用在電腦生成藝術。</p>
+            <p>課程分為五個單元：</p>
+        </section>
+        <section>
+            <h2>畫布與點和線</h2>
+            <p>這一部份的程式簡單地說明p5.js主要的繪圖方式，包含設定與畫面更新，畫布與簡單幾何圖形等。</p>
+            <dl>
+                <dt><a href='01_canva/canva.html' target='_blank'>基本架構與畫布</a></dt>
+                <dd>
+                    簡要地說明p5.js的架構及畫布(canva)的概念。
+                    <p>這是第一個p5.js的設計，我們將學習利用createCanvas在網頁上製作一個畫布。createCanvas中包含兩個參數，分別是畫布的寬與高。另外，background函數則可以設定畫布的顏色。</p>
+                    <p>此外，我們也可以學習到p5.js中的兩個主要函數，setup和draw。前者設定網頁開啟後的初始狀態，後者則會依據固定頻率(60 fps)重新畫一次。</p>        
+                    <ul>
+                        <li>setup()與draw()</li>
+                        <li>createCanvas()</li>
+                        <li>background()</li>
+                    </ul>
+                </dd>
+                
+                <dt><a href='02_points/point.html' target='_blank'>夜晚的星空</a></dt>
+                <dd>
+                    隨機在畫布上加上一些點。
+                    <p>我們將學習在draw()裡加上點(point)，每次在畫面上增加一個點。point()函數中的前兩個參數分別是x與y座標。在p5.js的系統中，畫布左上角的座標是(0, 0)，右下角的座標是(width-1, height-1)，width和height則是由createCanva()函數中設定。</p>
+                    <p>控制點以及其他幾何圖形的筆觸顏色與大小分別是stroke()和strokeWeight()，stroke()的參數是顏色值，strokeWeight()的參數則表示畫素(pixel)數。</p>
+                    <p>最後，random()函數可以產生兩個參數之間的任何一個整數值。</p>
+                    <ul>
+                        <li>width和height</li>
+                        <li>random()</li>
+                        <li>stroke()</li>
+                        <li>strokWeight()</li>
+                        <li>point()</li>
+                    </ul>
+                </dd>
+                
+                <dt><a href='02_lines/line.html' target='_blank'>燦爛煙花</a></dt>
+                <dd>
+                    隨機在畫布上加上一些直線。
+                    <p>我們將學習在draw()裡加上線(line)，每次在畫面上增加一條線。line()函數中有4個參數，分別代表開始與結束的x與y座標。我們使每一條線都從畫布的中心開始，向四周隨機放射。</p>
+                    <p>另外，利用color()可以指定要使用的顏色。color()內的三個參數分別表示顏色的紅、綠、藍的成分，數值從0到255之間。</p>
+                    <p>為了讓螢幕更新速度慢一些，在setup()當中，我們增加了一個函數frameRate()來調整重畫頻率。</p>
+                    <ul>
+                        <li>color()</li>
+                        <li>line()</li>
+                        <li>frameRate()</li>
+                    </ul>
+                </dd>
+                
+                <dt><a href='02_arcs/arc.html' target='_blank'>
+                    水波</a></dt>
+                <dd>
+                    產生四個不同角度的圓弧。
+                    <p>我們將學習在draw()裡加上圓弧(arc)。arc()函數中有6個參數，前兩個是圓弧所在橢圓的中心座標，接著兩個參數分別是橢圓的寬與高，最後兩個代表開始與結束的角度。</p>
+                    <p>在p5.js當中，計算角度的預設方式是RADIANS，也就是弧度，整個圓周從0到2PI。為了方便使用，這裡將angleMode改為DEGREES，整個圓周從0到360。</p>
+                    <p>最後，我們希望產生的圓弧當中不要填滿，所以使用noFill()方法來設定。</p>
+                    <ul>
+                        <li>arc()</li>
+                        <li>angleMode()</li>
+                        <li>noFill()</li>
+                    </ul>
+                </dd>
+            </dl>
+        </section>
+        
+        <section>
+            <h2>任意的幾何圖形</h2>
+            <p>p5.js除了提供常見的簡單幾何形，如point、line、arc、circle、square、triangle等，之外，也可以運用在畫布上指定若干頂點，然後將其連接起來構成任意的幾何形。</p>
+            <p>這部分的程式將首先介紹如何運用頂點連線構成任意圖形，接著皆運用for迴圈以及if分支來產生較複雜的圖形。</p>
+            <dl>
+                <dt><a href='03_pentagon/pentagon.html' target='_blank'>正五邊形</a></dt>
+                <dd>我們將學習運用vertex、beginShape、endShape和三角函數的sin和cos畫出正五邊形
+                    <p>運用startShape啟動開始畫圖形之後，在startShape和endShape之間的vertex會以線相連接。</p>
+                    <p>將圓周劃分成五等分，作為正五邊形的頂點。為了更了解這個五邊形勢如何畫出來的，我們在五邊形外加上一個圓，圓的半徑與五邊形的頂點到中心的距離相等。</p>
+                    <ul>
+                        <li>beginShape()</li>
+                        <li>endShape()</li>
+                        <li>vertex()</li>
+                        <li>sin()</li>
+                        <li>cos()</li>
+                    </ul>
+                </dd>
+
+                <dt><a href='03_regular_pentagon/regular_pentagon.html' target='_blank'>利用for迴圈畫出正五邊形</a></dt>
+                <dd>我們將學習運用以for迴圈簡化程式設計
+                    <p>在上一個程式當中，我們可以看到其中有相當多相同的敘述區塊，也就是我們重複做了很多次同樣的事情。
+                        如果這些事情，能夠自動完成，那麼我們就會比較省時省力，程式也會看起來比較簡潔易懂。
+                        在程式設計中，重複執行都是稱為迴圈(loop)。有兩種不同的迴圈，一種是條件式的while迴圈，另一種是列舉式的for迴圈。
+                        這裡因為我們知道迴圈進行的次數為6次，所以使用列舉式的for迴圈。
+                    </p>
+                </dd>
+                </dd>
+
+                <dt><a href='03_regular_polygon/regular_polygon.html' target='_blank'>指定邊數的正多邊形</a></dt>
+                <dd>我們將學習如何在p5.js中呈現文字與輸入資料
+                    <p>我們首先在畫布上呈現提示文字text()、輸入欄位createInput()與按鈕createButton()，提出使用者輸入正多邊形的邊數資料。</p>
+                    <p>當使用者輸入邊數，並按下按鈕後，先將輸入的文字以int()轉成整數值，然後畫出正多邊形。</p>
+                    <ul>
+                        <li>text()</li>
+                        <li>createInput()</li>
+                        <li>createButton()</li>
+                        <li>int()</li>
+                    </ul>
+                </dd>
+
+                <dt><a href='03_halftone_dots/halftone_dots.html' target='_blank'>點陣圖</a></dt>
+                <dd>雙重for迴圈以及if</dd>
+            </dl>
+        </section>
+        
+        <section>
+            <h2>滑鼠的座標與按下</h2>
+            <p>在上面的程式中，我們學習了利用Input和Button物件提供使用者透過鍵盤輸入，達到與程式互動的目的。</p>
+            <p>然而對使用者最直覺且方便的輸入方式莫過於滑鼠，因此這部分的程式將介紹如何運用滑鼠在畫布上對應的座標以及是否按下來做為與程式互動的方式。</p>
+            <dl>
+                <dt><a href='04_triangles/triangles.html' target='_blank'>正三角形</a></dt>
+                <dd>我們將學習如何讀取滑鼠對應畫布的座標(mouseX, mouseY)，做為三角形的第三個頂點。
+                    <p>我們在setup()中先隨機地設定好三角形的兩個頂點。</p>
+                    <p>在draw()中則先設定畫布的背景顏色，藉以清除前一個畫面的痕跡，然後再以當時滑鼠對應畫布的座標(mouseX, mouseY)，做為三角形的第三個頂點。
+                    <ul>
+                        <li>triangle()</li>
+                        <li>mouseX</li>
+                        <li>mouseY</li>
+                    </ul>
+                    <p>練習：固定第三個頂點的x座標，然後以滑鼠當時的y座標畫出變化的圖形。</p>
+                </dd>
+                <dt><a href='04_the_bounds/the_bounds.html' target='_blank'>圓的變化</a></dt>
+                <dd>透過滑鼠的向內或向外產生不同的變化。
+                    <p>首先我們利用dist()計算滑鼠當前所在座標與圓心(即畫布正中央)之間的距離。</p>
+                    <p>如果發現，目前距離小於半徑，則將圓縮小，並將顏色往藍色靠近。</p>
+                    <p>反之，將圓擴大，並將顏色往紅色靠近。</p>
+                    <ul>
+                        <li>colorMode()</li>
+                        <li>dist()</li>
+                    </ul>
+                </dd>
+                <dt><a href='04_circles_if_else/circles_if_else.html' target='_blank'>按下滑鼠</a></dt>
+                <dd>偵測目前滑鼠是否被按下
+                    <p>使用HSB色彩編碼，將色環分為幾個等分。當滑鼠按下時，改變一種顏色。</p>
+                    <p>如果滑鼠在持續按下之情況下，偵測滑鼠當前所在座標，以當時的顏色填滿一個圓。</p>
+                    <ul>
+                        <li>mouseClicked()</li>
+                        <li>mouseIsPressed</li>
+                    </ul>
+                </dd>
+                <dt><a href='04_smooth_lines_with_easing/smooth_lines_with_easing.html' target='_blank'>根據移動速度改變筆畫粗細</a></dt>
+                <dd>筆畫粗細
+                    <p>以easing參數使得畫出的線條較平滑，速度較快時線條較粗。</p>
+                    <p>當滑鼠的左鍵按下時，畫出線條。</p>
+                    <p>當右鍵按下時，重設畫布。</p>
+                    <ul>
+                        <li>mouseButton</li>
+                    </ul>
+                </dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>座標的轉換</h2>
+            <p>在上面的程式中，我們通常將座標系統固定，也就是使座標(0, 0)的位置固定在左上角，然後往右與往下分別增加X軸與Y軸的刻度。</p>
+            <p>在這種情形下，如果我們要移動或旋轉一個幾何圖形，只要對圖形上每一個重要的特徵點計算它們在移動和旋轉後新的座標位置即可。</p>
+            <p>此次的程式則是運用另外一種做法，我們移動(translate)或旋轉(rotate)座標系統，如此便不需要計算個特徵點的新位置。</p>
+            <dl>
+                <dt><a href='05_translate_square/translate_square.html' target='_blank'>移動的方形</a></dt>
+                <dd>利用滑鼠移動一個方形。
+                    <p>當滑鼠按下時，捕捉當時滑鼠對應在畫布上的位置(mouseX, mouseY)，並請將(mouseX, mouseY)儲存到(x, y)。</p>
+                    <p>每次畫面更新時，利用translate(x, y)，以(x, y)為新的座標系統的原點，繪製一個中心點為原點的正方形。</p>
+                    <ul>
+                        <li>translate()</li>
+                    </ul>
+                </dd>
+                <dt><a href='05_rotate_pentagon/rotate_pentagon.html' target='_blank'>旋轉的正五邊形</a></dt>
+                <dd>點擊滑鼠時旋轉一個角度。
+                    <p>將圓均等地分為幾個部分。</p>
+                    <p>以畫布的中心為中心，繪製一個正五邊形。</p>
+                    <p>每次點擊滑鼠時便將座標系統旋轉一個部分，相對來說就像五邊形旋轉一個角度。</p>
+                    <ul>
+                        <li>rotate()</li>
+                    </ul>
+                </dd>
+                <dt><a href='05_translate_location/translate_location.html' target='_blank'>旋轉的三角形</a></dt>
+                <dd>利用滑鼠移動一個方形，並在按下滑鼠時加快旋轉的速度。
+                    <p>運用前面兩個程式的translate()和rotate()。</p>
+                </dd>
+                <dt><a href='05_recursive_tree/recursive_tree.html' target='_blank'>建立生長樹</a></dt>
+                <dd>遞迴
+                    <ul>
+                        <li>recursive</li>
+                        <li>push()</li>
+                        <li>pop()</li>
+                    </ul>
+                </dd>
+            </dl>
+        </section>
+        <section>
+            <h2>更多的遞迴</h2>
+            <dl>
+                <dt><a href='06_triangle/triangle.html' target='_blank'>三角形</a></dt>
+                <dd></dd>
+                <dt><a href='06_square/square.html' target='_blank'>正方形</a></dt>
+                <dd></dd>
+                <dt><a href='06_recursive_tree_leaves/recursive_tree_leaves.html' target='_blank'>樹</a></dt>
+                <dd>樹與葉子</dd>
+            </dl>
+        </section>
+    </body>
+</html>
