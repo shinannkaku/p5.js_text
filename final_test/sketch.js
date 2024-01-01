@@ -4,16 +4,23 @@ function setup() {
     // put setup code here
     createCanvas(1200, 650);
     background('black');
+    frameRate(1);
     drawChristmasTree();
     creatSnowflakes();
 }
       
       function draw() {
         // Optional: you can leave this blank as all drawing is done in setup
+        drawMoon();   
         drawChristmasTree();
-        drawline();
-        drawSnowflakes(); //加入繪製雪花的函式呼叫
-        
+        drawSnowflakes(); //加入繪製雪花的函式呼叫  
+   
+      }
+
+      function drawMoon() {
+        // 左上角半月形月亮
+        fill('yellow');
+        ellipse(50, 50, 80, 80); // x座標為50，y座標為50，寬度80，高度80
       }
       
       function drawChristmasTree() {
@@ -31,8 +38,21 @@ function setup() {
         (x2,y2): 右下 x在畫布中心向右偏移60像素 y於畫布底部80像素
         (x3,y3): 左下 x在畫布的中心像左偏移60像素 y於畫布底部80像素*/
 
+          
+        // Change color when the mouse is pressed (or clicked)
+          if (mouseIsPressed) {
+            fill(random(255),random(255),random(255)); // Change to a different color when the mouse is pressed
+          } else {
+            fill('#228B22'); // Default green color
+          }
+
+          // Draw the green triangle
+          triangle(width / 2, height - 80 - 200, width / 2 + 60, height - 80, width / 2 - 60, height - 80);
+       
+      
+      
         // Draw ornaments (circles)
-        const numOrnaments = 50; //定義紅圈的數量
+        const numOrnaments = 15; //定義紅圈的數量
         for (let i = 0; i < numOrnaments; i++) {
           const x = random(0, width); //寬度在畫布的範圍內
           const y = random(120, height - 80); //(120:y座標最小值,確保裝飾品不會在樹幹下)
@@ -45,7 +65,7 @@ function setup() {
 
         // Draw snowflakes
         function creatSnowflakes() {
-          const numSnowflakes = 10; //定義雪花的數量
+          const numSnowflakes = 20; //定義雪花的數量
           for (let i = 0; i < numSnowflakes; i++) {
             let snowflake = {
               x: random(width),
@@ -70,7 +90,7 @@ function setup() {
             let radius = snowflake.radius;
 
             beginShape();
-            for (let j = 0; j < 5; j++) { // 五邊形的點數為5
+            for (let j = 0; j < 12; j++) { // 五邊形的點數為5
               let angle = TWO_PI * j / 5;
               let sx = x + cos(angle) * radius;
               let sy = y + sin(angle) * radius;
@@ -91,25 +111,9 @@ function setup() {
     
      
 
-      function drawline() { 
-        const numline = 10;
-        for (let i = 0 ; i < numline; i++)
-        {
-        r = random(255); 
-        g = random(255);
-        b = random(255);
-        strokeColor = color(r, g, b);  //rgb隨機的顏色
-        //x1 = random(0, width/2);
-        //y1 = random(height/2, height);
-        x1 = width/5; //固定起點X座標
-        y1 = height/5; //固定起點Y座標
-        x2 = random(0, width-1); //終點X座標(width-1:畫布最右邊的點/畫布的寬:0~widht-1)
-        y2 = random(0, height-1); //終點Y座標(height-1:畫布最下方的點/height:超出畫布的範圍)
-        stroke(strokeColor); 
-        line(x1, y1, x2, y2); //線條起點+終點座標
-        strokeWeight = random(1,5);  //線條粗細
-        }  
-      }
+      
+      
+
 
       
 
