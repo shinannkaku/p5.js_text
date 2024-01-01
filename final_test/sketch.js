@@ -1,14 +1,18 @@
+let Snowflakes = [];
+
 function setup() {
     // put setup code here
     createCanvas(1200, 650);
     background('black');
     drawChristmasTree();
+    creatSnowflakes();
 }
       
       function draw() {
         // Optional: you can leave this blank as all drawing is done in setup
         drawline();
-        //drawSnow(); //呼叫繪製雪花的函數
+        drawSnowflakes(); //加入繪製雪花的函式呼叫
+        drawChristmasTree();
       }
       
       function drawChristmasTree() {
@@ -36,22 +40,60 @@ function setup() {
           noStroke(); //圓圈不要有邊框
           ellipse(x, y, radius * 2); //繪製圓圈
         }
-      
+      }
 
-        // Draw Circles(snow)
-        const numCircles = 30; //定義白圈(雪)的數量
-        for (let i = 0; i < numCircles; i++) {
-          const x = random (0, width); //寬度在畫布的範圍內
-          const y = random(120, height);
-          const radius = random(10, 12);
-          fill('white');
-          stroke('white');
-          ellipse(x, y, radius * 2);
+        // Draw snowflakes
+        function creatSnowflakes() {
+          const numSnowflakes = 10; //定義雪花的數量
+          for (let i = 0; i < numSnowflakes; i++) {
+            let snowflake = {
+              x: random(width),
+              y: random(120, height),
+              radius: random(10,12),
+              speedX: random(-0.5,0.5), //雪花的水平速度
+              speedY: random(0.5,1.5) //雪花的垂直速度 
+            };
+            Snowflakes.push(snowflake);
         }
       }
+
+        function drawSnowflakes() {
+          for (let i = 0; i < Snowflakes.length; i++) {
+            let snowflake = Snowflakes[i];
+            let transparency = 200;
+            fill(255 , transparency);
+            noStroke();
+            
+            let x = snowflake.x;
+            let y = snowflake.y;
+            let radius = snowflake.radius;
+
+            beginShape();
+            for (let j = 0; j < 5; j++) { // 五邊形的點數為5
+              let angle = TWO_PI * j / 5;
+              let sx = x + cos(angle) * radius;
+              let sy = y + sin(angle) * radius;
+              vertex(sx, sy);
+            }
+            endShape(CLOSE);
+        
+            // 移動雪花的位置
+            snowflake.x += snowflake.speedX;
+            snowflake.y += snowflake.speedY;
+        
+            // 如果雪花超出畫布，重新放置到畫布上方
+            if (snowflake.y > height) {
+              Snowflakes.splice(i, 1); // 從陣列中移除超出畫布的雪花
+          }
+        }
+      }
+    
      
 
       function drawline() { 
+        const numline = 10;
+        for (let i = 0 ; i < numline; i++)
+        {
         r = random(255); 
         g = random(255);
         b = random(255);
@@ -62,8 +104,11 @@ function setup() {
         y1 = height/5; //固定起點Y座標
         x2 = random(0, width-1); //終點X座標(width-1:畫布最右邊的點/畫布的寬:0~widht-1)
         y2 = random(0, height-1); //終點Y座標(height-1:畫布最下方的點/height:超出畫布的範圍)
-        stroke(strokeColor); //line55
+        stroke(strokeColor); 
         line(x1, y1, x2, y2); //線條起點+終點座標
-        strokeWeight(random);  //線條粗細  
+        strokeWeight = random(1,5);  //線條粗細
+        }  
       }
+
+      
 
