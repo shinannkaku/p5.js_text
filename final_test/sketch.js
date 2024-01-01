@@ -10,9 +10,10 @@ function setup() {
       
       function draw() {
         // Optional: you can leave this blank as all drawing is done in setup
+        drawChristmasTree();
         drawline();
         drawSnowflakes(); //加入繪製雪花的函式呼叫
-        drawChristmasTree();
+        
       }
       
       function drawChristmasTree() {
